@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Attendance</title>
+  <link rel="stylesheet" href="student_style.css">
+  <script src="student.js"></script>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="box" class="box">
+  <h2>Professor Login</h2>
+
+  <select id="username">
+    <option value="">Select Professor</option>
+    <option value="MANJULA MAM">MANJULA MAM</option>
+    <option value="SUBASIS BENARJEE">SUBASIS BENARJEE</option>
+    <option value="AHMED SIR">AHMED SIR</option>
+    <option value="CORE SIR">CORE SIR</option>
+  </select>
+
+  <select id="subject">
+    <option value="">Select Subject</option>
+    <option value="ENGINEERING MECHANICS">ENGINEERING MECHANICS</option>
+    <option value="DSA">DSA</option>
+    <option value="HUMANITIES">HUMANITIES</option>
+    <option value="METALLURGY">METALLURGY</option>
+  </select>
+
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- ATTENDANCE -->
+<div id="att">
+  <h2>Student Attendance Sheet</h2>
+
+  <table id="mytable"></table><br>
+
+  <button onclick="download()">Download / Print</button>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- Bottom Right -->
+<div id="profName"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
