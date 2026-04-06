@@ -1,27 +1,37 @@
 body{
-  font-family: Arial;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background: #f4f6f9;
   text-align: center;
+  margin: 0;
 }
 
+/* BOX */
 .box{
   background: white;
   padding: 20px;
   width: 300px;
   margin: 100px auto;
-  box-shadow: 0 0 10px gray;
   border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
+/* INPUTS */
 input, select{
-  width: 90%;
+  width: 85%;
   padding: 10px;
   margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
+input:focus, select:focus{
+  border-color: #2c7be5;
+}
+
+/* BUTTON */
 button{
   padding: 10px 20px;
-  background: #2c7be5;
+  background:#1a5fd0 ;
   color: white;
   border: none;
   cursor: pointer;
@@ -29,30 +39,41 @@ button{
 }
 
 button:hover{
-  background: #1a5fd0;
+  background: #4b85d1;
 }
 
+/* TABLE */
 table{
-  margin: auto;
+  margin: 30px auto;
   border-collapse: collapse;
-  width: 60%;
+  width: 65%;
   background: white;
+  border: 1px solid #ccc;
 }
 
 th, td{
   border: 1px solid #ddd;
   padding: 10px;
+  text-decoration: solid;
 }
 
+/* HEADER */
 th{
   background: #2c7be5;
   color: white;
 }
 
+/* SIMPLE ROW COLOR */
+tr:nth-child(even){
+  background: #f9f9f9;
+}
+
+/* ATTENDANCE */
 #att{
   display: none;
 }
 
+/* PROF NAME */
 #profName{
   position: fixed;
   bottom: 10px;
