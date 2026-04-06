@@ -1,46 +1,85 @@
 // STUDENTS DATA
 var students = [
-  {name:"MOHIT CHOUDHARY", roll:"ME25B001"},
-  {name:"AYUSHI ANAND", roll:"ME25B002"},
-  {name:"KBIR V PANDEY", roll:"ME25B003"},
-  {name:"PRIYAM PANDEY", roll:"ME25B004"},
-  {name:"AKHAND UPADHYAY", roll:"ME25B005"},
-  {name:"AKASAPU LOKESH DEVA RAJU", roll:"ME25B006"},
-  {name:"SUPRAGYA TIWARI", roll:"ME25B007"},
-  {name:"NIRANKAR MISHRA", roll:"ME25B008"},
-  {name:"RAVI KUMAR SRIVASTAV", roll:"ME25B009"},
-  {name:"TARUN SAINI", roll:"ME25B010"},
-  {name:"AAYUSH", roll:"ME25B011"},
-  {name:"SACHIN KUMAR", roll:"ME25B012"},
-  {name:"SUMIT KUMAR", roll:"ME25B013"},
-  {name:"DINKAR KUMAR YADAV", roll:"ME25B014"},
-  {name:"SATAPATHI MANJULA", roll:"ME25B015"},
-  {name:"ANKIT CHOUDHARY", roll:"ME25B016"},
-  {name:"NITESH KUMAR", roll:"ME25B017"},
-  {name:"VANSH KUMAR", roll:"ME25B018"},
-  {name:"THADIKAMALLA GOWTHAM", roll:"ME25B019"},
-  {name:"DIKSHA", roll:"ME25B020"},
-  {name:"DIPANKAR SATNAMI", roll:"ME25B021"},
-  {name:"KAUSHAL PURTY", roll:"ME25B022"},
-  {name:"GOLU MEENA", roll:"ME25B023"},
-  {name:"PUSHPENDRA KUMAR MEENA", roll:"ME25B024"},
-  {name:"ARUN MEENA", roll:"ME25B025"},
-  {name:"BHUKYA PRASAD", roll:"ME25B026"},
-  {name:"BODA SRIKANTH", roll:"ME25B027"},
-  {name:"PRABIN BORO", roll:"ME25B028"},
-  {name:"BHUKYA SIDDHU", roll:"ME25B029"},
-  {name:"AZMEERA CHARAN", roll:"ME25B030"},
-  {name:"BHUKYA SRIKAR", roll:"ME25B031"},
-  {name:"JARUPULA ASHOK", roll:"ME25B032"},
-  {name:"BANOTHU GANESH", roll:"ME25B033"},
-  {name:"BANOTH PRABHAS", roll:"ME25B034"},
-  {name:"AMGOTH SIRIVALLY", roll:"ME25B035"},
-  {name:"BOTO THAMA", roll:"ME25B036"},
-  {name:"LOJUM NILLING LINGKING", roll:"ME25B037"},
-  {name:"KRITISHRI RABHA", roll:"ME25B038"},
-  {name:"RITVIKA R", roll:"ME25B039"},
-  {name:"STUTI SHREE", roll:"ME24B024"}
+  // ================= MECH =================
+  {name:"LAVUDYA KIRAN KUMAR NAYAK", roll:"BT25B002", group:"A", branch:"BIOTECH"},
+  {name:"BHUKYA GANESH", roll:"BT25B003", group:"A", branch:"BIOTECH"},
+  {name:"SHASHWAT YADAV", roll:"BT25B004", group:"A", branch:"BIOTECH"},
+  {name:"DEEPENDRA PATEL", roll:"BT25B005", group:"A", branch:"BIOTECH"},
+  {name:"KUMARI KANAK", roll:"BT25B006", group:"A", branch:"BIOTECH"},
+  {name:"RODDA KOUSHIK", roll:"BT25B007", group:"A", branch:"BIOTECH"},
+  {name:"TAKHE TUNYA", roll:"BT25B008", group:"A", branch:"BIOTECH"},
+  {name:"AJMEERA JAIKEETH", roll:"BT25B009", group:"A", branch:"BIOTECH"},
+  {name:"DHARMENDRA SINGH", roll:"BT25B010", group:"A", branch:"BIOTECH"},
+  {name:"DEEPAK KUMAR GUPTA", roll:"BT25B011", group:"A", branch:"BIOTECH"},
+
+  // ================= CIVIL =================
+  { name:"SAI UPADHYAY", roll:"CE25B001", group:"A", branch:"CIVIL" },
+  { name:"VANSH LOHAR", roll:"CE25B002", group:"A", branch:"CIVIL" },
+  { name:"VINAYAK KUMAR SINGH", roll:"CE25B003", group:"A", branch:"CIVIL" },
+  { name:"MAYANK KUMAR SINGH", roll:"CE25B004", group:"A", branch:"CIVIL" },
+  { name:"SUJAL PANDEY", roll:"CE25B005", group:"A", branch:"CIVIL" },
+  { name:"NITIN", roll:"CE25B006", group:"A", branch:"CIVIL" },
+  { name:"SHIVAM", roll:"CE25B007", group:"A", branch:"CIVIL" },
+  { name:"MANI RAJ", roll:"CE25B008", group:"A", branch:"CIVIL" },
+  { name:"KISHAN KUMAR", roll:"CE25B009", group:"A", branch:"CIVIL" },
+  { name:"MANISH KUMAR BHAGAT", roll:"CE25B010", group:"A", branch:"CIVIL" },
+  { name:"ASHISH", roll:"CE25B011", group:"A", branch:"CIVIL" },
+  { name:"NANDAN KUMAR", roll:"CE25B012", group:"A", branch:"CIVIL" },
+  { name:"RITIK KUMAR", roll:"CE25B013", group:"A", branch:"CIVIL" },
+  { name:"PRIYA", roll:"CE25B014", group:"A", branch:"CIVIL" },
+  { name:"KALPANA CHAWLA", roll:"CE25B015", group:"A", branch:"CIVIL" },
+  { name:"ANUSHKA", roll:"CE25B016", group:"A", branch:"CIVIL" },
+  { name:"ALOK KUMAR SHAH", roll:"CE25B017", group:"A", branch:"CIVIL" },
+  { name:"CHAITANYA PAREWA", roll:"CE25B018", group:"A", branch:"CIVIL" },
+  { name:"SHUBHAM", roll:"CE25B019", group:"A", branch:"CIVIL" },
+  { name:"ANJALI KUMARI", roll:"CE25B020", group:"A", branch:"CIVIL" },
+  { name:"HAGE DOLLEY", roll:"CE25B021", group:"A", branch:"CIVIL" },
+  { name:"AANGOON RONRANG", roll:"CE25B022", group:"A", branch:"CIVIL" },
+  { name:"YAMRA CHOTU", roll:"CE25B023", group:"A", branch:"CIVIL" },
+  { name:"ADAM KALI JONGSAM", roll:"CE25B024", group:"A", branch:"CIVIL" },
+  { name:"GOCHAM JUMYO", roll:"CE25B025", group:"A", branch:"CIVIL" },
+  { name:"GEMIN TATIN", roll:"CE25B026", group:"A", branch:"CIVIL" },
+  { name:"ANIL KUMAR MEENA", roll:"CE25B027", group:"A", branch:"CIVIL" },
+  { name:"TANISHQ H Y MEEMROTH", roll:"CE25B028", group:"A", branch:"CIVIL" },
+  { name:"PEJUM GARA", roll:"CE25B029", group:"A", branch:"CIVIL" },
+  { name:"ILI BOMNYO", roll:"CE25B030", group:"A", branch:"CIVIL" },
+  { name:"TABING KONYA", roll:"CE25B031", group:"A", branch:"CIVIL" },
+  { name:"NYAIGANG GANGSA", roll:"CE25B032", group:"A", branch:"CIVIL" },
+  { name:"KOJ UMPI", roll:"CE25B033", group:"A", branch:"CIVIL" },
+  { name:"OYING MUMNE PANYANG", roll:"CE25B034", group:"A", branch:"CIVIL" },
+  { name:"TOK AKUM", roll:"CE25B035", group:"A", branch:"CIVIL" },
+  { name:"SUNDAY CHEDA", roll:"CE25B036", group:"A", branch:"CIVIL" },
+  { name:"MILLI BENI", roll:"CE25B037", group:"A", branch:"CIVIL" },
+  { name:"YULLAW ABO BAGANG", roll:"CE25B038", group:"A", branch:"CIVIL" },
+  { name:"LOBSANG GAWA PANGGAM", roll:"CE25B039", group:"A", branch:"CIVIL" },
+
+  // ================= BIOTECH =================
+  {name:"MOHIT CHOUDHARY", roll:"ME25B001", group:"A", branch:"MECHANICAL"},
+  {name:"AYUSHI ANAND", roll:"ME25B002", group:"A", branch:"MECHANICAL"},
+  {name:"KBIR V PANDEY", roll:"ME25B003", group:"A", branch:"MECHANICAL"},
+  {name:"PRIYAM PANDEY", roll:"ME25B004", group:"A", branch:"MECHANICAL"},
+  {name:"AKHAND UPADHYAY", roll:"ME25B005", group:"A", branch:"MECHANICAL"},
+  {name:"AKASAPU LOKESH DEVA RAJU", roll:"ME25B006", group:"A", branch:"MECHANICAL"},
+  {name:"SUPRAGYA TIWARI", roll:"ME25B007", group:"A", branch:"MECHANICAL"},
+  {name:"NIRANKAR MISHRA", roll:"ME25B008", group:"A", branch:"MECHANICAL"},
+  {name:"RAVI KUMAR SRIVASTAV", roll:"ME25B009", group:"A", branch:"MECHANICAL"},
+  {name:"TARUN SAINI", roll:"ME25B010", group:"A", branch:"MECHANICAL"},
+  {name:"AAYUSH", roll:"ME25B011", group:"A", branch:"MECHANICAL"},
+  {name:"SACHIN KUMAR", roll:"ME25B012", group:"A", branch:"MECHANICAL"},
+  {name:"SUMIT KUMAR", roll:"ME25B013", group:"A", branch:"MECHANICAL"},
+  {name:"DINKAR KUMAR YADAV", roll:"ME25B014", group:"A", branch:"MECHANICAL"},
+  {name:"SATAPATHI MANJULA", roll:"ME25B015", group:"A", branch:"MECHANICAL"},
+  {name:"ANKIT CHOUDHARY", roll:"ME25B016", group:"A", branch:"MECHANICAL"},
+  {name:"NITESH KUMAR", roll:"ME25B017", group:"A", branch:"MECHANICAL"},
+  {name:"VANSH KUMAR", roll:"ME25B018", group:"A", branch:"MECHANICAL"},
+  {name:"THADIKAMALLA GOWTHAM", roll:"ME25B019", group:"A", branch:"MECHANICAL"},
+  {name:"DIKSHA", roll:"ME25B020", group:"A", branch:"MECHANICAL"},
+  {name:"DIPANKAR SATNAMI", roll:"ME25B021", group:"A", branch:"MECHANICAL"},
+  {name:"KAUSHAL PURTY", roll:"ME25B022", group:"A", branch:"MECHANICAL"},
+  {name:"GOLU MEENA", roll:"ME25B023", group:"A", branch:"MECHANICAL"},
+  {name:"PUSHPENDRA KUMAR MEENA", roll:"ME25B024", group:"A", branch:"MECHANICAL"}
 ];
+
 
 // PROFESSORS
 var professors = [
@@ -72,10 +111,8 @@ function login(){
   var valid = false;
 
   for(var i = 0; i < professors.length; i++){
-    if(
-      professors[i].name === u &&
-      professors[i].subject === s
-    ){
+    if(professors[i].name === u && professors[i].subject === s)
+    {
       valid = true;
       professor = u;
       subject = s;
@@ -86,7 +123,6 @@ function login(){
   if(valid){
     document.getElementById("box").style.display = "none";
     document.getElementById("att").style.display = "block";
-
     document.getElementById("profName").innerHTML =
       "Professor: " + professor + " | Subject: " + subject;
 
@@ -101,6 +137,7 @@ function show(){
   var table = document.getElementById("mytable");
   table.innerHTML = "";
 
+  var selectedBranch = document.getElementById("branchSelect").value;
   var header = table.insertRow();
   header.innerHTML = `
     <th>Name</th>
@@ -109,11 +146,15 @@ function show(){
   `;
 
   for(var i = 0; i < students.length; i++){
-    var row = table.insertRow();
+    if(students[i].group !== "A") continue;
+    if(selectedBranch && students[i].branch !== selectedBranch) continue;
+
+    let row = table.insertRow();
 
     row.insertCell(0).innerHTML = students[i].name;
     row.insertCell(1).innerHTML = students[i].roll;
-    row.insertCell(2).innerHTML = `<input type="checkbox" id="c${i}">`;
+    row.insertCell(2).innerHTML =
+      `<input type="checkbox" id="c${i}">`;
   }
 }
 
@@ -125,17 +166,22 @@ function download(){
 
   var presentList = "Present Students:\n\n";
   var absentList = "Absent Students:\n\n";
+  var selectedBranch = document.getElementById("branchSelect").value;
 
   for(var i = 0; i < students.length; i++){
+
+    if(students[i].group !== "A") continue;
+    if(selectedBranch && students[i].branch !== selectedBranch) continue;
+
     var checkbox = document.getElementById("c" + i);
 
     if(checkbox && checkbox.checked){
-      absentList += `${students[i].name} (Roll: ${students[i].roll})\n`;
-    } else {
-      presentList += `${students[i].name} (Roll: ${students[i].roll})\n`;
+      absentList += `${students[i].name} (${students[i].roll})\n`;
+    }else {
+      presentList += `${students[i].name} (${students[i].roll})\n`;
     }
-  }
-
+}
+  //final text to be inserted in the download files
   var finalText =
 `Student Attendance Sheet
 
