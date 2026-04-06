@@ -3,7 +3,7 @@
 <head>
   <title>Student Attendance</title>
   <link rel="stylesheet" href="student_style.css">
-  <script src="student.js"></script>
+  
 </head>
 
 <body>
@@ -28,6 +28,14 @@
     <option value="METALLURGY">METALLURGY</option>
   </select>
 
+  <select id="branchSelect" onchange="show()">
+    <option value="">Select Branch</option>
+    <option value="MECHANICAL">Mechanical</option>
+    <option value="CIVIL">Civil</option>
+    <option value="BIOTECH">Biotech</option>
+  </select>
+
+
   <input type="password" id="password" placeholder="Password">
 
   <button onclick="login()">Login</button>
@@ -46,6 +54,6 @@
 <!-- Bottom Right -->
 <div id="profName"></div>
 
-<script src="script.js"></script>
+<script src="student.js"></script>
 </body>
 </html>
