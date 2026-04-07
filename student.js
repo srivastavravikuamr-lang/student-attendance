@@ -83,10 +83,10 @@ var students = [
 
 // PROFESSORS
 var professors = [
-  {name: "MANJULA MAM", subject: "ENGINEERING MECHANICS"},
-  {name: "SUBASIS BENARJEE", subject: "DSA"},
-  {name: "AHMED SIR", subject: "HUMANITIES"},
-  {name: "CORE SIR", subject: "METALLURGY"}
+  {name: "Dr.Manjula das", subject: "ENGINEERING MECHANICS"},
+  {name: "Dr.Subasis benarjee", subject: "DSA"},
+  {name: "Dr.Sam ahmed mazumder", subject: "HUMANITIES"},
+  {name: "Dr.Supreme das", subject: "METALLURGY"}
 ];
 
 var professor = "";
