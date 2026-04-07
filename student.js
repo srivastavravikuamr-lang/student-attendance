@@ -83,22 +83,11 @@ var students = [
 
 // PROFESSORS
 var professors = [
-  {name: "Dr. Manjula Das", subject: "ENGINEERING MECHANICS"},
-  {name: "Dr. Subasis Banerjee", subject: "DSA"},
-  {name: "Dr. Sam Ahmed Mazumder", subject: "HUMANITIES"},
-  {name: "Dr. Supreme Das", subject: "METALLURGY"}
+  {name: "MANJULA MAM", subject: "ENGINEERING MECHANICS"},
+  {name: "SUBASIS BENARJEE", subject: "DSA"},
+  {name: "AHMED SIR", subject: "HUMANITIES"},
+  {name: "CORE SIR", subject: "METALLURGY"}
 ];
-document.getElementById("username").addEventListener("change", function () {
-  var id = this.value;
-
-  var prof = professors.find(p => p.id === id);
-
-  if (prof) {
-    document.getElementById("subject").value = prof.subject;
-  } else {
-    document.getElementById("subject").value = "";
-  }
-});
 
 var professor = "";
 var subject = "";
