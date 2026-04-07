@@ -83,10 +83,10 @@ var students = [
 
 // PROFESSORS
 var professors = [
-  {name: "Dr.MANJULA DAS mam", subject: "ENGINEERING MECHANICS"},
-  {name: "Dr.SUBASIS BENARJEE sir", subject: "DSA"},
-  {name: "Dr.SAM AHMED MAZUMDER sir", subject: "HUMANITIES"},
-  {name: "Dr.SUPREME DAS sir", subject: "METALLURGY"}
+  {name: "Dr. Manjula Das", subject: "ENGINEERING MECHANICS"},
+  {name: "Dr. Subasis Banerjee", subject: "DSA"},
+  {name: "Dr. Sam Ahmed Mazumder", subject: "HUMANITIES"},
+  {name: "Dr. Supreme Das", subject: "METALLURGY"}
 ];
 document.getElementById("username").addEventListener("change", function () {
   var id = this.value;
