@@ -88,6 +88,17 @@ var professors = [
   {name: "Dr.SAM AHMED MAZUMDER sir", subject: "HUMANITIES"},
   {name: "Dr.SUPREME DAS sir", subject: "METALLURGY"}
 ];
+document.getElementById("username").addEventListener("change", function () {
+  var id = this.value;
+
+  var prof = professors.find(p => p.id === id);
+
+  if (prof) {
+    document.getElementById("subject").value = prof.subject;
+  } else {
+    document.getElementById("subject").value = "";
+  }
+});
 
 var professor = "";
 var subject = "";
