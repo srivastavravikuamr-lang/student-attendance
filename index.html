@@ -14,10 +14,10 @@
 
   <select id="username">
     <option value="">Select Professor</option>
-    <option value="Dr.Manjula das">Dr.Manjula das</option>
-    <option value="Dr.Subasis benarjee">Dr.Subasis benarjee</option>
-    <option value="Dr.Sam ahmed mazumder">Dr.Sam ahmed mazumder</option>
-    <option value="Dr.Supreme das">Dr.Supreme das</option>
+    <option value="MANJULA MAM">MANJULA MAM</option>
+    <option value="SUBASIS BENARJEE">SUBASIS BENARJEE</option>
+    <option value="AHMED SIR">AHMED SIR</option>
+    <option value="CORE SIR">CORE SIR</option>
   </select>
 
   <select id="subject">
@@ -28,12 +28,12 @@
     <option value="METALLURGY">METALLURGY</option>
   </select>
 
-  <select id="branchSelect" onchange="show()">
-    <option value="">Select Branch</option>
-    <option value="MECHANICAL">Mechanical</option>
-    <option value="CIVIL">Civil</option>
-    <option value="BIOTECH">Biotech</option>
+  <select id="group">
+    <option value="">Select Group</option>
+    <option value="A">Group A</option>
+    <option value="B">Group B</option>
   </select>
+
 
 
   <input type="password" id="password" placeholder="Password">
@@ -45,11 +45,13 @@
 <div id="att">
   <h2>Student Attendance Sheet</h2>
 
-  <table id="mytable"></table><br>
+  <!--MULTIPLE TABLES WILL COME HERE -->
+  <div id="tablesContainer"></div><br>
 
   <button onclick="download()">Download / Print</button>
   <button onclick="logout()">Logout</button>
 </div>
+
 
 <!-- Bottom Right -->
 <div id="profName"></div>
@@ -57,3 +59,6 @@
 <script src="student.js"></script>
 </body>
 </html>
+
+
+
