@@ -1,4 +1,3 @@
-// STUDENTS DATA
 var students = [
   // ================= MECH =================
   {name:"LAVUDYA KIRAN KUMAR NAYAK", roll:"BT25B002", group:"A", branch:"BIOTECH"},
@@ -79,26 +78,27 @@ var students = [
   {name:"GOLU MEENA", roll:"ME25B023", group:"A", branch:"MECHANICAL"},
   {name:"PUSHPENDRA KUMAR MEENA", roll:"ME25B024", group:"A", branch:"MECHANICAL"}
 ];
-
-
-// PROFESSORS
+// ================= PROFESSORS =================
 var professors = [
-  {name: "Dr.Manjula das", subject: "ENGINEERING MECHANICS"},
-  {name: "Dr.Subasis benarjee", subject: "DSA"},
-  {name: "Dr.Sam ahmed mazumder", subject: "HUMANITIES"},
-  {name: "Dr.Supreme das", subject: "METALLURGY"}
+  {name: "MANJULA MAM", subject: "ENGINEERING MECHANICS"},
+  {name: "SUBASIS BENARJEE", subject: "DSA"},
+  {name: "AHMED SIR", subject: "HUMANITIES"},
+  {name: "CORE SIR", subject: "METALLURGY"}
 ];
 
+// ================= GLOBAL VARIABLES =================
 var professor = "";
 var subject = "";
+var group = "";
 
-// LOGIN
+// ================= LOGIN =================
 function login(){
   var u = document.getElementById("username").value.trim();
   var s = document.getElementById("subject").value.trim();
+  var g = document.getElementById("group").value.trim();
   var p = document.getElementById("password").value.trim();
 
-  if(u === "" || s === "" || p === ""){
+  if(u === "" || s === "" || g === "" || p === ""){
     alert("Please select all fields!");
     return;
   }
@@ -111,11 +111,11 @@ function login(){
   var valid = false;
 
   for(var i = 0; i < professors.length; i++){
-    if(professors[i].name === u && professors[i].subject === s)
-    {
+    if(professors[i].name === u && professors[i].subject === s){
       valid = true;
       professor = u;
       subject = s;
+      group = g;
       break;
     }
   }
@@ -123,8 +123,9 @@ function login(){
   if(valid){
     document.getElementById("box").style.display = "none";
     document.getElementById("att").style.display = "block";
+
     document.getElementById("profName").innerHTML =
-      "Professor: " + professor + " | Subject: " + subject;
+      "Professor: " + professor + " | Subject: " + subject + " | Group: " + group;
 
     show();
   } else {
@@ -132,12 +133,35 @@ function login(){
   }
 }
 
-// SHOW STUDENTS
+// ================= SHOW MULTIPLE TABLES =================
 function show(){
-  var table = document.getElementById("mytable");
-  table.innerHTML = "";
+  var container = document.getElementById("tablesContainer");
+  container.innerHTML = "";
 
-  var selectedBranch = document.getElementById("branchSelect").value;
+  if(group === "A"){
+    createTable("MECHANICAL");
+    createTable("CIVIL");
+    createTable("BIOTECH");
+  }
+
+  if(group === "B"){
+    createTable("ECE");
+    createTable("EE");
+    createTable("CSE");
+  }
+}
+
+// ================= CREATE TABLE FUNCTION =================
+function createTable(branchName){
+
+  var container = document.getElementById("tablesContainer");
+
+  var title = document.createElement("h3");
+  title.innerText = branchName + " Attendance";
+  container.appendChild(title);
+
+  var table = document.createElement("table");
+
   var header = table.insertRow();
   header.innerHTML = `
     <th>Name</th>
@@ -145,20 +169,34 @@ function show(){
     <th>Mark Absent</th>
   `;
 
+  var count = 0;
+
   for(var i = 0; i < students.length; i++){
-    if(students[i].group !== "A") continue;
-    if(selectedBranch && students[i].branch !== selectedBranch) continue;
 
-    let row = table.insertRow();
+    if(students[i].branch === branchName){
 
-    row.insertCell(0).innerHTML = students[i].name;
-    row.insertCell(1).innerHTML = students[i].roll;
-    row.insertCell(2).innerHTML =
-      `<input type="checkbox" id="c${i}">`;
+      var row = table.insertRow();
+
+      row.insertCell(0).innerHTML = students[i].name;
+      row.insertCell(1).innerHTML = students[i].roll;
+
+      row.insertCell(2).innerHTML =
+        `<input type="checkbox" id="${branchName}_${i}">`;
+
+      count++;
+    }
   }
+
+  if(count === 0){
+    var row = table.insertRow();
+    row.insertCell(0).colSpan = 3;
+    row.cells[0].innerHTML = "No students";
+  }
+
+  container.appendChild(table);
 }
 
-// DOWNLOAD
+// ================= DOWNLOAD =================
 function download(){
   var now = new Date();
   var date = now.toLocaleDateString();
@@ -166,27 +204,31 @@ function download(){
 
   var presentList = "Present Students:\n\n";
   var absentList = "Absent Students:\n\n";
-  var selectedBranch = document.getElementById("branchSelect").value;
 
   for(var i = 0; i < students.length; i++){
 
-    if(students[i].group !== "A") continue;
-    if(selectedBranch && students[i].branch !== selectedBranch) continue;
+    var branch = students[i].branch;
 
-    var checkbox = document.getElementById("c" + i);
+    if(
+      (group === "A" && (branch === "MECHANICAL" || branch === "CIVIL" || branch === "BIOTECH")) ||
+      (group === "B" && (branch === "ECE" || branch === "EE" || branch === "CSE"))
+    ){
+      var checkbox = document.getElementById(branch + "_" + i);
 
-    if(checkbox && checkbox.checked){
-      absentList += `${students[i].name} (${students[i].roll})\n`;
-    }else {
-      presentList += `${students[i].name} (${students[i].roll})\n`;
+      if(checkbox && checkbox.checked){
+        absentList += `${students[i].name} (${students[i].roll})\n`;
+      } else {
+        presentList += `${students[i].name} (${students[i].roll})\n`;
+      }
     }
-}
-  //final text to be inserted in the download files
+  }
+
   var finalText =
 `Student Attendance Sheet
 
 Professor: ${professor}
 Subject: ${subject}
+Group: ${group}
 Date: ${date}
 Time: ${time}
 
@@ -201,18 +243,20 @@ ${absentList}
   w.print();
 }
 
-// LOGOUT
+// ================= LOGOUT =================
 function logout(){
   document.getElementById("att").style.display = "none";
   document.getElementById("box").style.display = "block";
 
   document.getElementById("username").value = "";
   document.getElementById("subject").value = "";
+  document.getElementById("group").value = "";
   document.getElementById("password").value = "";
 
-  document.getElementById("mytable").innerHTML = "";
+  document.getElementById("tablesContainer").innerHTML = "";
   document.getElementById("profName").innerHTML = "";
 
   professor = "";
   subject = "";
+  group = "";
 }
