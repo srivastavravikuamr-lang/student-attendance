@@ -1,3 +1,4 @@
+// ================= STUDENTS =================
 var students = [
   // ================= MECH =================
   {name:"LAVUDYA KIRAN KUMAR NAYAK", roll:"BT25B002", group:"A", branch:"BIOTECH"},
@@ -78,12 +79,13 @@ var students = [
   {name:"GOLU MEENA", roll:"ME25B023", group:"A", branch:"MECHANICAL"},
   {name:"PUSHPENDRA KUMAR MEENA", roll:"ME25B024", group:"A", branch:"MECHANICAL"}
 ];
+
 // ================= PROFESSORS =================
 var professors = [
-  {name: "MANJULA MAM", subject: "ENGINEERING MECHANICS"},
-  {name: "SUBASIS BENARJEE", subject: "DSA"},
-  {name: "AHMED SIR", subject: "HUMANITIES"},
-  {name: "CORE SIR", subject: "METALLURGY"}
+  {name:"MANJULA MAM", subject:"ENGINEERING MECHANICS"},
+  {name:"SUBASIS BENARJEE", subject:"DSA"},
+  {name:"AHMED SIR", subject:"HUMANITIES"},
+  {name:"CORE SIR", subject:"METALLURGY"}
 ];
 
 // ================= GLOBAL VARIABLES =================
@@ -91,172 +93,271 @@ var professor = "";
 var subject = "";
 var group = "";
 
-// ================= LOGIN =================
+
+// ================= LOGIN FUNCTION =================
 function login(){
-  var u = document.getElementById("username").value.trim();
-  var s = document.getElementById("subject").value.trim();
-  var g = document.getElementById("group").value.trim();
-  var p = document.getElementById("password").value.trim();
 
-  if(u === "" || s === "" || g === "" || p === ""){
-    alert("Please select all fields!");
+  var u = document.getElementById("username").value;
+  var s = document.getElementById("subject").value;
+  var g = document.getElementById("group").value;
+  var p = document.getElementById("password").value;
+
+  if(u=="" || s=="" || g=="" || p==""){
+    alert("Please fill all fields");
     return;
   }
 
-  if(p !== "1234"){
-    alert("Wrong Password");
+  if(p != "1234"){
+    alert("Wrong password");
     return;
   }
 
-  var valid = false;
+  var found = false;
 
-  for(var i = 0; i < professors.length; i++){
-    if(professors[i].name === u && professors[i].subject === s){
-      valid = true;
+  for(var i=0; i<professors.length; i++){
+    if(professors[i].name == u && professors[i].subject == s){
+      found = true;
       professor = u;
       subject = s;
       group = g;
-      break;
     }
   }
 
-  if(valid){
-    document.getElementById("box").style.display = "none";
-    document.getElementById("att").style.display = "block";
-
-    document.getElementById("profName").innerHTML =
-      "Professor: " + professor + " | Subject: " + subject + " | Group: " + group;
-
-    show();
-  } else {
-    alert("Invalid Name or Subject!");
+  if(found == false){
+    alert("Wrong professor or subject");
+    return;
   }
+
+  document.getElementById("box").style.display = "none";
+  document.getElementById("att").style.display = "block";
+
+  document.getElementById("profName").innerHTML =
+    "Professor: " + professor + " | Subject: " + subject + " | Group: " + group;
+
+  showTables();
 }
 
-// ================= SHOW MULTIPLE TABLES =================
-function show(){
+
+
+// ================= SHOW TABLES =================
+function showTables(){
+
   var container = document.getElementById("tablesContainer");
   container.innerHTML = "";
 
-  if(group === "A"){
-    createTable("MECHANICAL");
-    createTable("CIVIL");
-    createTable("BIOTECH");
+  var data = localStorage.getItem("att");
+
+  if(data == null){
+    data = {};
+  } else {
+    data = JSON.parse(data);
   }
 
-  if(group === "B"){
-    createTable("ECE");
-    createTable("EE");
-    createTable("CSE");
+  var branches;
+
+  if(group == "A"){
+    branches = ["MECHANICAL","CIVIL","BIOTECH"];
+  } else {
+    branches = ["ECE","EE","CSE"];
+  }
+
+  for(var i=0; i<branches.length; i++){
+    createTable(branches[i], data);
   }
 }
 
-// ================= CREATE TABLE FUNCTION =================
-function createTable(branchName){
+
+
+// ================= CREATE TABLE =================
+function createTable(branch, data){
 
   var container = document.getElementById("tablesContainer");
 
   var title = document.createElement("h3");
-  title.innerText = branchName + " Attendance";
+  title.innerHTML = branch + " Attendance";
   container.appendChild(title);
 
   var table = document.createElement("table");
 
-  var header = table.insertRow();
-  header.innerHTML = `
-    <th>Name</th>
-    <th>Roll</th>
-    <th>Mark Absent</th>
-  `;
+  var today = new Date().toLocaleDateString();
 
-  var count = 0;
+  // ---- collect all dates ----
+  var dates = [];
 
-  for(var i = 0; i < students.length; i++){
+  for(var roll in data){
+    if(data[roll].branch == branch){
 
-    if(students[i].branch === branchName){
+      for(var d in data[roll].dates){
 
-      var row = table.insertRow();
+        if(dates.indexOf(d) == -1){
+          dates.push(d);
+        }
 
-      row.insertCell(0).innerHTML = students[i].name;
-      row.insertCell(1).innerHTML = students[i].roll;
-
-      row.insertCell(2).innerHTML =
-        `<input type="checkbox" id="${branchName}_${i}">`;
-
-      count++;
+      }
     }
   }
 
-  if(count === 0){
+  // add today if not present
+  if(dates.indexOf(today) == -1){
+    dates.push(today);
+  }
+
+  // ---- table header ----
+  var header = table.insertRow();
+  header.innerHTML = "<th>Name</th><th>Roll</th>";
+
+  for(var i=0; i<dates.length; i++){
+    header.innerHTML += "<th>" + dates[i] + "</th>";
+  }
+
+  // ---- table rows ----
+  for(var i=0; i<students.length; i++){
+
+    if(students[i].branch != branch) continue;
+
     var row = table.insertRow();
-    row.insertCell(0).colSpan = 3;
-    row.cells[0].innerHTML = "No students";
+
+    row.insertCell(0).innerHTML = students[i].name;
+    row.insertCell(1).innerHTML = students[i].roll;
+
+    var roll = students[i].roll;
+
+    for(var j=0; j<dates.length; j++){
+
+      // today column → checkbox
+      if(dates[j] == today){
+
+        row.insertCell(row.cells.length).innerHTML =
+          "<input type='checkbox' id='"+branch+"_"+i+"'>";
+
+      } else {
+
+        var value = "-";
+
+        if(data[roll] && data[roll].dates[dates[j]]){
+          value = data[roll].dates[dates[j]];
+        }
+
+        row.insertCell(row.cells.length).innerHTML = value;
+      }
+    }
   }
 
   container.appendChild(table);
 }
 
-// ================= DOWNLOAD =================
-function download(){
-  var now = new Date();
-  var date = now.toLocaleDateString();
-  var time = now.toLocaleTimeString();
 
-  var presentList = "Present Students:\n\n";
-  var absentList = "Absent Students:\n\n";
 
-  for(var i = 0; i < students.length; i++){
+// ================= SAVE ATTENDANCE =================
+function saveAttendance(){
 
-    var branch = students[i].branch;
+  var today = new Date().toLocaleDateString();
 
-    if(
-      (group === "A" && (branch === "MECHANICAL" || branch === "CIVIL" || branch === "BIOTECH")) ||
-      (group === "B" && (branch === "ECE" || branch === "EE" || branch === "CSE"))
-    ){
-      var checkbox = document.getElementById(branch + "_" + i);
+  var data = localStorage.getItem("att");
 
-      if(checkbox && checkbox.checked){
-        absentList += `${students[i].name} (${students[i].roll})\n`;
-      } else {
-        presentList += `${students[i].name} (${students[i].roll})\n`;
-      }
+  if(data == null){
+    data = {};
+  } else {
+    data = JSON.parse(data);
+  }
+
+  for(var i=0; i<students.length; i++){
+
+    var id = students[i].branch + "_" + i;
+    var cb = document.getElementById(id);
+
+    if(cb == null) continue;
+
+    var roll = students[i].roll;
+
+    if(!data[roll]){
+      data[roll] = {
+        name: students[i].name,
+        branch: students[i].branch,
+        dates: {}
+      };
+    }
+
+    if(cb.checked){
+      data[roll].dates[today] = "P";
+    } else {
+      data[roll].dates[today] = "A";
     }
   }
 
-  var finalText =
-`Student Attendance Sheet
+  localStorage.setItem("att", JSON.stringify(data));
 
-Professor: ${professor}
-Subject: ${subject}
-Group: ${group}
-Date: ${date}
-Time: ${time}
+  alert("Attendance saved for " + today);
 
-${presentList}
+  showTables(); // refresh
+}
 
-${absentList}
-`;
 
-  var w = window.open("", "", "width=600,height=600");
-  w.document.write("<pre>" + finalText + "</pre>");
-  w.document.close();
+
+// ================= DOWNLOAD =================
+function downloadToday(){
+
+  var today = new Date().toLocaleDateString();
+
+  var text = "Attendance Sheet\n\n";
+
+  text += "Professor: " + professor + "\n";
+  text += "Subject: " + subject + "\n";
+  text += "Group: " + group + "\n";
+  text += "Date: " + today + "\n\n";
+
+  var branches = ["MECHANICAL","CIVIL","BIOTECH"];
+
+  for(var b=0; b<branches.length; b++){
+
+    text += "----- " + branches[b] + " -----\n";
+
+    for(var i=0; i<students.length; i++){
+
+      if(students[i].branch != branches[b]) continue;
+
+      var id = students[i].branch + "_" + i;
+      var cb = document.getElementById(id);
+
+      if(cb == null) continue;
+
+      var status;
+
+      if(cb.checked){
+        status = "Present";
+      } else {
+        status = "Absent";
+      }
+
+      text += students[i].name + " - " + status + "\n";
+    }
+
+    text += "\n";
+  }
+
+  var w = window.open("");
+  w.document.write("<pre>" + text + "</pre>");
   w.print();
 }
 
+
+
+// ================= RESET =================
+function resetData(){
+
+  var confirmReset = confirm("Reset full semester data?");
+
+  if(confirmReset == true){
+    localStorage.removeItem("att");
+    alert("Data cleared");
+    location.reload();
+  }
+}
+
+
+
 // ================= LOGOUT =================
 function logout(){
-  document.getElementById("att").style.display = "none";
-  document.getElementById("box").style.display = "block";
-
-  document.getElementById("username").value = "";
-  document.getElementById("subject").value = "";
-  document.getElementById("group").value = "";
-  document.getElementById("password").value = "";
-
-  document.getElementById("tablesContainer").innerHTML = "";
-  document.getElementById("profName").innerHTML = "";
-
-  professor = "";
-  subject = "";
-  group = "";
+  location.reload();
 }
+
