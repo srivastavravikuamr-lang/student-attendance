@@ -43,18 +43,26 @@
 
 <!-- ATTENDANCE -->
 <div id="att">
-  <h2>Student Attendance Sheet</h2>
+  <div class="headbox">
+    <h2>Student Attendance Sheet</h2>
+  </div>
 
   <!--MULTIPLE TABLES WILL COME HERE -->
   <div id="tablesContainer"></div><br>
 
-  <button onclick="download()">Download / Print</button>
+  <button onclick="saveAttendance()">Save Attendance</button>
+  <button onclick="showSemester()">View Semester</button>
+  <button id="div1" onclick="downloadToday()">Download Today Attendance</button>
+
   <button onclick="logout()">Logout</button>
+  <button onclick="resetData()">Reset Semester</button>
 </div>
 
 
 <!-- Bottom Right -->
 <div id="profName"></div>
+  
+
 
 <script src="student.js"></script>
 </body>
