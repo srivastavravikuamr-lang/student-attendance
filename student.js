@@ -345,7 +345,10 @@ function downloadToday(){
 // =================VIEW SEMESTER=============
 function viewSemester(){
   
+  document.getElementById("back").style.display = "inline-block";
+
   var container = document.getElementById("tablesContainer");
+  
   container.innerHTML = "<h2>Semester Attendance Report</h2>";
 
   var data = localStorage.getItem("att");
@@ -396,9 +399,16 @@ function viewSemester(){
 }
 
 //============== BACK BUTTON============
-function goBack(){
-  document.getElementById("backBtn").style.display = "none";
-  showTables(); // this reloads your main attendance view
+function back(){
+
+  // hide back button
+  document.getElementById("back").style.display = "none";
+
+  // clear semester report
+  document.getElementById("tablesContainer").innerHTML = "";
+
+  // show attendance tables again
+  showTables();
 }
 
 // ================= RESET =================
