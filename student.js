@@ -1,3 +1,25 @@
+
+function showProfessor(){
+
+    document.getElementById("loginChoice").style.display="none";
+    document.getElementById("professorLogin").style.display="block";
+
+}
+
+function showCoordinator(){
+
+    document.getElementById("loginChoice").style.display="none";
+    document.getElementById("coordinatorLogin").style.display="block";
+
+}
+
+function goHome(){
+
+    document.getElementById("loginChoice").style.display="block";
+    document.getElementById("professorLogin").style.display="none";
+    document.getElementById("coordinatorLogin").style.display="none";
+
+}
 // ================= STUDENTS =================
 var students = [
   // ================= MECH =================
@@ -81,6 +103,37 @@ var students = [
   {name:"DEEPAK KUMAR GUPTA", roll:"BT25B011", group:"A", branch:"BIOTECH"},
 ];
 
+// ================= COORDINATOR =================
+function coordinatorLogin(){
+
+    var user = document.getElementById("coordinatorUser").value;
+    var pass = document.getElementById("coordinatorPassword").value;
+
+    if(user=="admin" && pass=="admin123"){
+
+        document.getElementById("box").style.display="none";
+        document.getElementById("att").style.display="block";
+
+        document.getElementById("resetBtn").style.display="inline-block";
+
+        document.getElementById("profName").innerHTML="Coordinator";
+
+        document.getElementById("tablesContainer").innerHTML="";
+        document.querySelector("button[onclick='saveAttendance()']").style.display="none";
+        document.querySelector("button[onclick='downloadToday()']").style.display="none";
+        document.querySelector("button[onclick='viewSemester()']").style.display="none";
+        document.getElementById("back").style.display="none";
+
+    }
+    
+    else{
+
+        alert("Invalid Coordinator Login");
+
+    }
+
+}
+
 // ================= PROFESSORS =================
 var professors = [
   {name:"MANJULA MAM", subject:"ENGINEERING MECHANICS"},
@@ -131,6 +184,11 @@ function login(){
 
   document.getElementById("box").style.display = "none";
   document.getElementById("att").style.display = "block";
+  document.getElementById("logoutBtn").style.display="block";
+  document.getElementById("resetBtn").style.display="none";
+  document.querySelector("button[onclick='saveAttendance()']").style.display="inline-block";
+  document.querySelector("button[onclick='downloadToday()']").style.display="inline-block";
+  document.querySelector("button[onclick='viewSemester()']").style.display="inline-block";
 
   document.getElementById("profName").innerHTML =
     "Professor: " + professor + " | Subject: " + subject + " | Group: " + group;
