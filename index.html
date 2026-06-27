@@ -10,35 +10,63 @@
 
 <!-- LOGIN -->
 <div id="box" class="box">
-  <h2>Professor Login</h2>
 
-  <select id="username">
-    <option value="">Select Professor</option>
-    <option value="MANJULA MAM">MANJULA MAM</option>
-    <option value="SUBASIS BENARJEE">SUBASIS BENARJEE</option>
-    <option value="AHMED SIR">AHMED SIR</option>
-    <option value="CORE SIR">CORE SIR</option>
-  </select>
+    <div id="loginChoice">
+        <h2>Student Attendance System</h2>
 
-  <select id="subject">
-    <option value="">Select Subject</option>
-    <option value="ENGINEERING MECHANICS">ENGINEERING MECHANICS</option>
-    <option value="DSA">DSA</option>
-    <option value="HUMANITIES">HUMANITIES</option>
-    <option value="METALLURGY">METALLURGY</option>
-  </select>
+        <button onclick="showProfessor()">Professor Login</button>
+        <button onclick="showCoordinator()">Coordinator Login</button>
+    </div>
 
-  <select id="group">
-    <option value="">Select Group</option>
-    <option value="A">Group A</option>
-    <option value="B">Group B</option>
-  </select>
+    <!-- Professor Login -->
+    <div id="professorLogin" style="display:none;">
 
+        <h2>Professor Login</h2>
 
+        <select id="username">
+            <option value="">Select Professor</option>
+            <option value="MANJULA MAM">MANJULA MAM</option>
+            <option value="SUBASIS BENARJEE">SUBASIS BENARJEE</option>
+            <option value="AHMED SIR">AHMED SIR</option>
+            <option value="CORE SIR">CORE SIR</option>
+        </select>
 
-  <input type="password" id="password" placeholder="Password">
+        <select id="subject">
+            <option value="">Select Subject</option>
+            <option value="ENGINEERING MECHANICS">ENGINEERING MECHANICS</option>
+            <option value="DSA">DSA</option>
+            <option value="HUMANITIES">HUMANITIES</option>
+            <option value="METALLURGY">METALLURGY</option>
+        </select>
 
-  <button onclick="login()">Login</button>
+        <select id="group">
+            <option value="">Select Group</option>
+            <option value="A">Group A</option>
+            <option value="B">Group B</option>
+        </select>
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+        <button onclick="goHome()">Back</button>
+
+    </div>
+
+    <!-- Coordinator Login -->
+
+    <div id="coordinatorLogin" style="display:none;">
+
+        <h2>Coordinator Login</h2>
+
+        <input type="text" id="coordinatorUser" placeholder="Coordinator ID">
+
+        <input type="password" id="coordinatorPassword" placeholder="Password">
+
+        <button onclick="coordinatorLogin()">Login</button>
+        <button onclick="goHome()">Back</button>
+
+    </div>
+
 </div>
 
 <!-- ATTENDANCE -->
@@ -55,8 +83,10 @@
   <button onclick="viewSemester()">View Semester</button>
   <button id="div1" onclick="downloadToday()">Download Today Attendance</button>
 
-  <button onclick="logout()">Logout</button>
-  <button onclick="resetData()">Reset Semester</button>
+  <button id="logoutBtn" onclick="logout()">Logout</button>
+  <button id="resetBtn" onclick="resetData()" style="display:none;">
+    Reset Semester
+</button>
 </div>
 
 
