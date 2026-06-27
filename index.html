@@ -1,206 +1,166 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Student Attendance</title>
+  <title>College Attendance Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="student_style.css">
-  
 </head>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Student Attendance</title>
-  <link rel="stylesheet" href="student_style.css">
-  
-</head>
-
 <body>
 
-<!-- LOGIN -->
-<div id="box" class="box">
-
-    <div id="loginChoice">
-        <h2>Student Attendance System</h2>
-
-        <button onclick="showProfessor()">Professor Login</button>
-        <button onclick="showCoordinator()">Coordinator Login</button>
-    </div>
-
-    <!-- Professor Login -->
-    <div id="professorLogin" style="display:none;">
-
-        <h2>Professor Login</h2>
-
-        <select id="username">
-            <option value="">Select Professor</option>
-            <option value="MANJULA MAM">MANJULA MAM</option>
-            <option value="SUBASIS BENARJEE">SUBASIS BENARJEE</option>
-            <option value="AHMED SIR">AHMED SIR</option>
-            <option value="CORE SIR">CORE SIR</option>
-        </select>
-
-        <select id="subject">
-            <option value="">Select Subject</option>
-            <option value="ENGINEERING MECHANICS">ENGINEERING MECHANICS</option>
-            <option value="DSA">DSA</option>
-            <option value="HUMANITIES">HUMANITIES</option>
-            <option value="METALLURGY">METALLURGY</option>
-        </select>
-
-        <select id="group">
-            <option value="">Select Group</option>
-            <option value="A">Group A</option>
-            <option value="B">Group B</option>
-        </select>
-
-        <input type="password" id="password" placeholder="Password">
-
-        <button onclick="login()">Login</button>
-        <button onclick="goHome()">Back</button>
-
-    </div>
-
-    <!-- Coordinator Login -->
-
-    <div id="coordinatorLogin" style="display:none;">
-
-        <h2>Coordinator Login</h2>
-
-        <input type="text" id="coordinatorUser" placeholder="Coordinator ID">
-
-        <input type="password" id="coordinatorPassword" placeholder="Password">
-
-        <button onclick="coordinatorLogin()">Login</button>
-        <button onclick="goHome()">Back</button>
-
-    </div>
-
-</div>
-
-<!-- ATTENDANCE -->
-<div id="att">
-  <div class="headbox">
-    <h2>Student Attendance Sheet</h2>
-  </div>
-
-  <!--MULTIPLE TABLES WILL COME HERE -->
-  <div id="tablesContainer"></div><br>
-
-  <button id="back" onclick="back()" style="display:none;">Prev..</button>
-  <button onclick="saveAttendance()">Save Attendance</button>
-  <button onclick="viewSemester()">View Semester</button>
-  <button id="div1" onclick="downloadToday()">Download Today Attendance</button>
-
-  <button id="logoutBtn" onclick="logout()">Logout</button>
-  <button id="resetBtn" onclick="resetData()" style="display:none;">
-    Reset Semester
-</button>
-</div>
-
-
-<!-- Bottom Right -->
-<div id="profName"></div>
+  <div id="box" class="box">
   
+  <div id="loginChoice">
+    <h2>College Attendance Management System</h2>
+    <p class="login-subtitle">Choose your login type</p>
+    <button onclick="showProfessor()">Professor Login</button>
+    <button onclick="showCoordinator()">Coordinator Login</button>
+  </div>
+  
+  
+  <div id="professorLogin" style="display:none;">
+    <h2>Professor Login</h2>
+    <select id="username"></select>
+    <select id="subject"></select>
+    <select id="group">
+      <option value="">Select Group</option>
+      <option value="A">Group A</option>
+      <option value="B">Group B</option>
+    </select>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <button class="plainBtn" onclick="goHome()">Back</button>
+  </div>
+  
+  
+  <div id="coordinatorLogin" style="display:none;">
+    <h2>Coordinator Login</h2>
+    <input type="text" id="coordinatorUser" placeholder="Coordinator ID">
+    <input type="password" id="coordinatorPassword" placeholder="Password">
+    <button onclick="coordinatorLogin()">Login</button>
+    <button class="plainBtn" onclick="goHome()">Back</button>
+  </div>
+</div>
+<div id="att">
+  <button id="logoutBtn" onclick="logout()">Logout</button>
+  
+  <div class="headbox"><h2>Professor Dashboard</h2><p id="professorContext"></p></div>
+  <div class="professorActions">
+    <button id="back" onclick="back()" style="display:none;">Back to Attendance</button>
+    <button onclick="showTables()">Take Attendance</button>
+    <button onclick="saveAttendance()">Save Attendance</button>
+    <button onclick="downloadToday()">Download Today's Attendance</button>
+    <button onclick="viewSemester()">View Semester Attendance</button>
+  </div>
+  <div id="tablesContainer"></div>
+</div>
+<div id="coordinatorDashboard">
+  <aside class="sidebar">
+    
+    <h2>AUTHORITIES</h2>
+    <button onclick="showAdminSection('dashboard')">Dashboard</button>
+    <button onclick="showAdminSection('students')">Student Management</button>
+    <button onclick="showAdminSection('attendance')">Attendance Management</button>
+    <button onclick="showAdminSection('professors')">Professor Management</button>
+    <button onclick="showAdminSection('reports')">Reports</button>
+    <button onclick="showAdminSection('settings')">Settings</button>
+  </aside>
+  
+  <main class="adminMain">
+    <button id="adminLogoutBtn" onclick="logout()">Logout</button>
+    <section id="admin-dashboard" class="adminSection">
+      
+      
+      <h1>Coordinator Dashboard</h1>
+      <div id="statCards" class="statGrid"></div>
+      <div class="panelGrid">
+        <div class="adminPanel"><h3>Today's Statistics</h3><div id="todayStats"></div></div>
+        <div class="adminPanel"><h3>Branch-wise Attendance</h3><div id="branchStats"></div></div>
+      </div>
+    </section>
+    <section id="admin-students" class="adminSection">
+      <h1>Student Management</h1>
+      <div class="adminPanel">
+        <h3 id="studentFormTitle">Add Student</h3>
+        <input type="hidden" id="studentEditRoll">
+        
+        <div class="formGrid">
+          <input id="studentName" placeholder="Name">
+          <input id="studentRoll" placeholder="Roll">
+          <input id="studentBranch" placeholder="Branch">
+          <input id="studentGroup" placeholder="Group">
+        
+        </div>
+        <button onclick="saveStudent()">Save Student</button>
+        <button class="plainBtn" onclick="clearStudentForm()">Clear</button>
+      </div>
+      
+      <div class="adminPanel">
+        <input id="studentSearch" onkeyup="renderStudents()" placeholder="Search by roll, name, or branch">
+        <div id="studentsTable">
 
+        </div>
+      </div>
+    </section>
 
+    
+    <section id="admin-attendance" class="adminSection">
+      
+      <h1>Attendance Management</h1>
+      <div class="adminPanel"><div class="formGrid">
+        <input type="date" id="attendanceDate" onchange="renderAttendanceEditor()">
+        <select id="attendanceBranch" onchange="renderAttendanceEditor()">
+
+        </select><select id="attendanceGroup" onchange="renderAttendanceEditor()">
+          <option value="">All Groups</option>
+          <option value="A">Group A</option>
+          <option value="B">Group B</option>
+        </select>
+      </div>
+      <button onclick="markClass('P')">Mark Entire Class Present</button>
+      <button onclick="markClass('A')">Mark Entire Class Absent</button>
+      <button class="dangerBtn" onclick="deleteAttendanceDay()">Delete Attendance of This Day</button>
+      <div id="attendanceEditor"></div>
+    </div>
+    </section>
+   
+   
+    <section id="admin-professors" class="adminSection">
+      <h1>Professor Management</h1>
+      <div class="adminPanel">
+        <h3 id="professorFormTitle">Add Professor</h3>
+        <input type="hidden" id="professorEditIndex">
+        <div class="formGrid">
+          <input id="professorNameInput" placeholder="Name">
+          <input id="professorSubjectInput" placeholder="Subject">
+          <input id="professorPasswordInput" placeholder="Password">
+        </div>
+        <button onclick="saveProfessor()">Save Professor</button>
+        <button class="plainBtn" onclick="clearProfessorForm()">Clear</button>
+      </div>
+      <div class="adminPanel" id="professorsTable"></div>
+    </section>
+   
+   
+    <section id="admin-reports" class="adminSection">
+      <h1>Reports</h1>
+      <button onclick="renderSemesterReport()">Semester Report</button>
+      <button onclick="renderLowAttendanceReport()">Low Attendance Report</button>
+      <button onclick="exportSemesterReport()">Export Complete Semester Report</button>
+      <button onclick="exportStudentReport()">Export Student Report</button>
+      <div id="reportsArea" class="adminPanel"></div>
+    </section>
+    
+    <section id="admin-settings" class="adminSection">
+      <h1>Settings</h1>
+      <div class="adminPanel">
+        <h3>Semester Control</h3>
+        <p>Resetting clears attendance only. Students and professors remain saved.</p>
+        <button class="dangerBtn" onclick="resetData()">Reset Semester</button>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="profName"></div>
 <script src="student.js"></script>
 </body>
 </html>
-
-
-
-
-<body>
-
-<!-- LOGIN -->
-<div id="box" class="box">
-
-    <div id="loginChoice">
-        <h2>Student Attendance System</h2>
-
-        <button onclick="showProfessor()">Professor Login</button>
-        <button onclick="showCoordinator()">Coordinator Login</button>
-    </div>
-
-    <!-- Professor Login -->
-    <div id="professorLogin" style="display:none;">
-
-        <h2>Professor Login</h2>
-
-        <select id="username">
-            <option value="">Select Professor</option>
-            <option value="MANJULA MAM">MANJULA MAM</option>
-            <option value="SUBASIS BENARJEE">SUBASIS BENARJEE</option>
-            <option value="AHMED SIR">AHMED SIR</option>
-            <option value="CORE SIR">CORE SIR</option>
-        </select>
-
-        <select id="subject">
-            <option value="">Select Subject</option>
-            <option value="ENGINEERING MECHANICS">ENGINEERING MECHANICS</option>
-            <option value="DSA">DSA</option>
-            <option value="HUMANITIES">HUMANITIES</option>
-            <option value="METALLURGY">METALLURGY</option>
-        </select>
-
-        <select id="group">
-            <option value="">Select Group</option>
-            <option value="A">Group A</option>
-            <option value="B">Group B</option>
-        </select>
-
-        <input type="password" id="password" placeholder="Password">
-
-        <button onclick="login()">Login</button>
-        <button onclick="goHome()">Back</button>
-
-    </div>
-
-    <!-- Coordinator Login -->
-
-    <div id="coordinatorLogin" style="display:none;">
-
-        <h2>Coordinator Login</h2>
-
-        <input type="text" id="coordinatorUser" placeholder="Coordinator ID">
-
-        <input type="password" id="coordinatorPassword" placeholder="Password">
-
-        <button onclick="coordinatorLogin()">Login</button>
-        <button onclick="goHome()">Back</button>
-
-    </div>
-
-</div>
-
-<!-- ATTENDANCE -->
-<div id="att">
-  <div class="headbox">
-    <h2>Student Attendance Sheet</h2>
-  </div>
-
-  <!--MULTIPLE TABLES WILL COME HERE -->
-  <div id="tablesContainer"></div><br>
-
-  <button id="back" onclick="back()" style="display:none;">Prev..</button>
-  <button onclick="saveAttendance()">Save Attendance</button>
-  <button onclick="viewSemester()">View Semester</button>
-  <button id="div1" onclick="downloadToday()">Download Today Attendance</button>
-
-  <button id="logoutBtn" onclick="logout()">Logout</button>
-  <button id="resetBtn" onclick="resetData()" style="display:none;">
-    Reset Semester
-</button>
-</div>
-
-
-<!-- Bottom Right -->
-<div id="profName"></div>
-  
-
-
-<script src="student.js"></script>
-</body>
-</html>
-
-
-
