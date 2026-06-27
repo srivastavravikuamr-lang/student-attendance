@@ -113,6 +113,7 @@ function coordinatorLogin(){
 
         document.getElementById("box").style.display="none";
         document.getElementById("att").style.display="block";
+        document.getElementById("logoutBtn").style.display="block";
 
         document.getElementById("resetBtn").style.display="inline-block";
 
