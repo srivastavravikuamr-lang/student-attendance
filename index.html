@@ -14,21 +14,27 @@
     <p class="login-subtitle">Choose your login type</p>
     <button onclick="showProfessor()">Professor Login</button>
     <button onclick="showCoordinator()">Coordinator Login</button>
+    <button class="plainBtn" onclick="showStudentView()">Student View</button>
   </div>
   
   
   <div id="professorLogin" style="display:none;">
     <h2>Professor Login</h2>
-    <select id="username"></select>
-    <select id="subject"></select>
-    <select id="group">
-      <option value="">Select Group</option>
-      <option value="A">Group A</option>
-      <option value="B">Group B</option>
-    </select>
+    <input type="text" id="username" placeholder="Professor ID" autocomplete="username">
     <input type="password" id="password" placeholder="Password">
     <button onclick="login()">Login</button>
     <button class="plainBtn" onclick="goHome()">Back</button>
+  </div>
+
+  <div id="groupSelection" style="display:none;">
+    <h2>Welcome, <span id="welcomeProfessor"></span></h2>
+    <div class="accountContext">
+      <p><b>Assigned Branch:</b> <span id="assignedBranch"></span></p>
+      <p><b>Assigned Subject:</b> <span id="assignedSubject"></span></p>
+    </div>
+    <p class="login-subtitle">Choose Group</p>
+    <div id="groupButtons"></div>
+    <button class="plainBtn" onclick="logout()">Back</button>
   </div>
   
   
@@ -37,6 +43,14 @@
     <input type="text" id="coordinatorUser" placeholder="Coordinator ID">
     <input type="password" id="coordinatorPassword" placeholder="Password">
     <button onclick="coordinatorLogin()">Login</button>
+    <button class="plainBtn" onclick="goHome()">Back</button>
+  </div>
+
+  <div id="studentLogin" style="display:none;">
+    <h2>Student View</h2>
+    <input type="text" id="studentViewRoll" placeholder="Enter Roll Number">
+    <button onclick="openStudentView()">View My Attendance</button>
+    <button class="plainBtn" onclick="openStudentView()">View Class Attendance</button>
     <button class="plainBtn" onclick="goHome()">Back</button>
   </div>
 </div>
@@ -131,13 +145,24 @@
         <input type="hidden" id="professorEditIndex">
         <div class="formGrid">
           <input id="professorNameInput" placeholder="Name">
+          <input id="professorIdInput" placeholder="Professor ID">
+          <input id="professorEmailInput" type="email" placeholder="Email">
+          <input id="professorDepartmentInput" placeholder="Branch / Department">
           <input id="professorSubjectInput" placeholder="Subject">
-          <input id="professorPasswordInput" placeholder="Password">
+          <input id="professorPasswordInput" type="password" placeholder="Password">
+          <select id="professorGroupsInput" multiple aria-label="Authorized groups">
+            <option value="A">Group A</option>
+            <option value="B">Group B</option>
+          </select>
         </div>
         <button onclick="saveProfessor()">Save Professor</button>
         <button class="plainBtn" onclick="clearProfessorForm()">Clear</button>
       </div>
       <div class="adminPanel" id="professorsTable"></div>
+      <div class="adminPanel">
+        <h3>Login Activity</h3>
+        <div id="loginActivityTable"></div>
+      </div>
     </section>
    
    
@@ -159,6 +184,18 @@
       </div>
     </section>
   </main>
+</div>
+<div id="studentDashboard">
+  <button id="studentLogoutBtn" onclick="goHome()">Back</button>
+  <div class="headbox"><h2>Student Attendance View</h2><p>Read-only attendance information</p></div>
+  <div class="studentViewControls">
+    <input id="studentViewSearch" onkeyup="renderStudentAttendance()" placeholder="Search by roll number or student name">
+    <select id="studentViewBranch" onchange="renderStudentAttendance()"><option value="">All Branches</option></select>
+    <select id="studentViewGroup" onchange="renderStudentAttendance()"><option value="">All Groups</option><option value="A">Group A</option><option value="B">Group B</option></select>
+    <select id="studentViewSubject" onchange="renderStudentAttendance()"><option value="">All Subjects</option></select>
+  </div>
+  <div id="studentPersonalAttendance"></div>
+  <div id="studentAttendanceTable"></div>
 </div>
 <div id="profName"></div>
 <script src="student.js"></script>
